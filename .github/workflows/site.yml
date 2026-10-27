@@ -5,12 +5,6 @@ on:
   push:
     branches: [main]
 
-# Une seule mise en ligne à la fois : deux fusions rapprochées se suivent au lieu d'échouer.
-# Seule la dernière en attente est gardée, donc main finit toujours déployé.
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 permissions:
   contents: read
   pages: write
@@ -26,6 +20,12 @@ jobs:
   deploy:
     if: github.event_name == 'push'
     needs: check
+    # Une seule mise en ligne à la fois : deux fusions rapprochées se suivent au lieu d'échouer.
+    # Seule la dernière en attente est gardée, donc main finit toujours déployé.
+    # Sur le job seulement : au niveau du workflow, les checks des PR s'annuleraient entre eux.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     environment:
       name: github-pages
