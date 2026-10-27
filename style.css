@@ -30,6 +30,12 @@ section { padding: 3rem 0; }
   .about { grid-template-columns: 16rem 1fr; align-items: start; gap: 2rem; }
 }
 
+.about h3 { margin: 1.5rem 0 0.6rem; }
+.langs { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.6rem; }
+.langs div { background: var(--card); padding: 0.6rem 0.9rem; border-radius: 0.6rem; }
+.langs dt { font-weight: 700; }
+.langs dd { margin: 0; color: var(--muted); font-size: 0.95rem; overflow-wrap: anywhere; }
+
 footer { text-align: center; color: var(--muted); padding: 2rem; }
 
 h3 { margin-top: 2rem; }
