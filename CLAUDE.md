@@ -9,7 +9,7 @@ Développé par Gravity (voir `gravity.yaml`) : une issue = une tâche, avec les
 - Couleurs via les variables de `:root` dans `style.css` (le mode sombre les redéfinit).
 - Mobile d'abord : rien ne doit déborder horizontalement à 360px de large.
 - Images dans `images/`, compressées, avec un `alt` descriptif.
-- Les `<!-- TODO -->` marquent le contenu à fournir par Klervi : ne pas inventer de faits sur elle.
+- Ne pas inventer de faits sur Klervi : chaque info doit venir d'une source (France 3, Ginkio) ou de l'issue.
 
 ## Vérifier
 `python3 check.py` (lang, title, liens et ancres locaux). C'est la commande que Gravity et la CI lancent.
