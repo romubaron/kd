@@ -1,37 +1,28 @@
-# An issue form that produces the three sections Gravity reads, so that no
-# author has to type a heading exactly right. GitHub renders each field's
-# label as a `###` heading above the answer, and a heading's depth is
-# formatting rather than meaning: Gravity matches a section on its heading
-# text, at any level (ADR-0016 clause 2, ADR-0038 clause 1).
+# Formulaire d'issue lu par Gravity. Les trois titres (Goal, Acceptance criteria,
+# Dependencies) doivent rester mot pour mot ceux de gravity.yaml : Gravity les cherche
+# dans le corps de l'issue.
 #
-# Copy this file to `.github/ISSUE_TEMPLATE/task.yml` in your repository. The
-# three labels below must stay word for word what `gravity.yaml`'s
-# `issues.goalSection`, `issues.criteriaSection` and
-# `issues.dependenciesSection` say — renaming one here means renaming it
-# there, and nowhere else.
-#
-# No `labels:` key, on purpose. A form that applied `agent:ready` would be a
-# machine writing authorization, which is a person's and nothing else's
-# (ADR-0002 clause 1). Apply it by hand once the issue reads the way you want.
+# labels: agent:ready, choix du propriétaire du dépôt (2026-10-27) : une issue créée par
+# ce formulaire est autorisée d'office. La porte humaine qui reste est l'approbation de la
+# proposition dans GCC (ADR-0038) : rien n'est implémenté sans elle. Retirer la ligne
+# labels pour revenir à une autorisation posée à la main.
 
-name: Task
-description: Work for Gravity to pick up once a person labels it agent:ready
+name: Demande de modification
+description: Une modification du site, que Gravity réalisera après approbation
+labels: ["agent:ready"]
 body:
   - type: markdown
     attributes:
       value: |
-        Gravity reads exactly the three sections below and nothing else.
-        Whatever else your issues require of themselves is yours to validate.
+        Décris une seule modification par issue. Un agent la réalisera et ouvrira une pull request ; elle ne sera faite qu'après approbation dans la console Gravity.
 
   - type: textarea
     id: goal
     attributes:
       label: Goal
       description: >-
-        Copied verbatim as the task's outcome. Gravity does not summarize,
-        reorder, complete, translate or interpret it, and it is content rather
-        than authorization — naming a model or a label here grants nothing.
-      placeholder: One or two sentences on what should be true once this is done.
+        L'objectif, en une ou deux phrases : ce qui doit être vrai sur le site une fois la modification faite.
+      placeholder: La page d'accueil affiche une section Vidéos avec mes trois derniers reportages.
     validations:
       required: true
 
@@ -40,13 +31,11 @@ body:
     attributes:
       label: Acceptance criteria
       description: >-
-        One criterion per list item, bullet (`-`) or ordered (`1.`). Each item
-        becomes one criterion, in order, copied verbatim; an indented line
-        under an item stays with that item. A section with no list item is an
-        escalation to a person, not an empty list.
+        Les critères vérifiables, un par ligne, chacun commençant par « - ». Donne les textes exacts et les liens complets ; l'agent n'invente rien.
       placeholder: |
-        - the new endpoint answers 200 with the recorded shape
-        - the existing callers still pass
+        - la section #videos apparaît après Réalisations
+        - elle intègre https://www.youtube.com/watch?v=...
+        - python3 check.py passe
     validations:
       required: true
 
@@ -55,14 +44,7 @@ body:
     attributes:
       label: Dependencies
       description: >-
-        One entry per line: `- #123` for an issue in this repository,
-        `- other#42` for an issue in another project Gravity serves, or the
-        single word `None`. Nothing else is a dependency — not a number in
-        prose, not a checkbox, not a sentence saying "blocked by". Only `None`
-        means there are none; a blank or unreadable section escalates to a
-        person with the line quoted back.
-      placeholder: |
-        - #123
-        - other#42
+        Écris simplement None. Si cette modification doit attendre une autre issue, écris « - #12 » (une par ligne).
+      value: None
     validations:
       required: true
