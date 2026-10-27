@@ -1,0 +1,58 @@
+[
+  {
+    "name": "agent:ready",
+    "color": "0e8a16",
+    "writtenBy": "a person",
+    "optional": false,
+    "description": "Authorized to run. The only label that grants anything, and the one Gravity never applies."
+  },
+  {
+    "name": "agent:running",
+    "color": "1d76db",
+    "writtenBy": "Gravity",
+    "optional": false,
+    "description": "A worker holds the lease and is implementing; a draft pull request is open."
+  },
+  {
+    "name": "agent:review",
+    "color": "fbca04",
+    "writtenBy": "Gravity",
+    "optional": false,
+    "description": "The draft is ready for review, in Gravity's merge queue, or merged and still delivering."
+  },
+  {
+    "name": "agent:blocked",
+    "color": "d93f0b",
+    "writtenBy": "Gravity",
+    "optional": false,
+    "description": "A dependency is unmet, something needs a person's decision, or every current attempt failed."
+  },
+  {
+    "name": "agent:done",
+    "color": "6f42c1",
+    "writtenBy": "Gravity",
+    "optional": false,
+    "description": "Delivered and correlated to production; the issue is closed as completed."
+  },
+  {
+    "name": "ai:fast",
+    "color": "c5def5",
+    "writtenBy": "a person",
+    "optional": true,
+    "description": "Optional intent: this work deserves the cheapest rung. Never applied or read back by Gravity."
+  },
+  {
+    "name": "ai:auto",
+    "color": "bfd4f2",
+    "writtenBy": "a person",
+    "optional": true,
+    "description": "Optional intent: a declaration, and never the absence of one. Never applied by Gravity."
+  },
+  {
+    "name": "ai:deep",
+    "color": "5319e7",
+    "writtenBy": "a person",
+    "optional": true,
+    "description": "Optional intent: this work deserves the most model. Never applied by Gravity."
+  }
+]

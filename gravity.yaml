@@ -1,0 +1,11 @@
+version: 1
+
+repo:
+  name: kd
+
+workflow:
+  verify:
+    quick: python3 check.py
+
+concurrency:
+  implementation: 3
