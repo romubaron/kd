@@ -45,7 +45,10 @@ def check(root):
             u = urlparse(ref)
             if u.scheme or u.netloc:
                 continue  # externe (https:, mailto:, tel:)
-            target = (f.parent / u.path).resolve() if u.path else f
+            if u.path.startswith("/kd/"):
+                target = (root / u.path[len("/kd/"):]).resolve()  # racine GitHub Pages
+            else:
+                target = (f.parent / u.path).resolve() if u.path else f
             if target.is_dir():
                 target = target / "index.html"
             if not target.exists():
@@ -61,6 +64,12 @@ def demo():
         d = Path(d)
         (d / "index.html").write_text('<html lang="fr"><title>t</title><a href="#x"></a><a href="nope.css"></a><a href="mailto:a@b">m</a>')
         assert check(d) == ["index.html: ancre introuvable #x", "index.html: lien cassé nope.css"], check(d)
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        (d / "style.css").write_text("")
+        (d / "index.html").write_text('<html lang="fr"><title>t</title>')
+        (d / "404.html").write_text('<html lang="fr"><title>t</title><a href="/kd/style.css"></a><a href="/kd/"></a><a href="/kd/absent.css"></a>')
+        assert check(d) == ["404.html: lien cassé /kd/absent.css"], check(d)
 
 
 if __name__ == "__main__":
