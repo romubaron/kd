@@ -43,3 +43,8 @@ h3 { margin-top: 2rem; }
 .list { padding: 0; list-style: none; }
 .list li { background: var(--card); padding: 0.9rem 1.1rem; border-radius: 0.6rem; margin-bottom: 0.6rem; }
 .list .meta { display: block; }
+.list li { overflow-wrap: anywhere; }
+
+.rubrique { margin-top: 2.5rem; padding-left: 1rem; border-left: 4px solid var(--accent); }
+.rubrique h3 { margin-top: 0; color: var(--accent); font-size: 1.5rem; }
+.rubrique h4 { margin: 1.5rem 0 0.75rem; font-size: 1.1rem; }
