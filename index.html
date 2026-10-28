@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Klervi Dalibot</title>
   <meta name="description" content="Klervi Dalibot, journaliste, rédactrice et présentatrice : portfolio et contact.">
+  <script>
+    try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta property="og:title" content="Klervi Dalibot">
@@ -17,11 +23,14 @@
 <body>
   <header>
     <a class="brand" href="#">Klervi Dalibot</a>
-    <nav>
-      <a href="#about">À propos</a>
-      <a href="#work">Réalisations</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="header-end">
+      <nav>
+        <a href="#about">À propos</a>
+        <a href="#work">Réalisations</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button type="button" class="btn btn--ghost theme-toggle" id="theme-toggle" hidden></button>
+    </div>
   </header>
 
   <main>
@@ -103,5 +112,26 @@
   </main>
 
   <footer>© Klervi Dalibot</footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement, btn = document.getElementById("theme-toggle");
+      var mq = window.matchMedia("(prefers-color-scheme: dark)");
+      function current() { return root.getAttribute("data-theme") || (mq.matches ? "dark" : "light"); }
+      function label() {
+        var next = current() === "dark" ? "clair" : "sombre";
+        btn.textContent = "Thème " + next;
+        btn.setAttribute("aria-label", "Passer au thème " + next);
+      }
+      btn.hidden = false;
+      label();
+      btn.addEventListener("click", function () {
+        var t = current() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", t);
+        try { localStorage.setItem("theme", t); } catch (e) {}
+        label();
+      });
+    })();
+  </script>
 </body>
 </html>

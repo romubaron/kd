@@ -1,50 +1,144 @@
+/* Variables : thème clair par défaut, thème sombre via prefers-color-scheme
+   ou via l'attribut data-theme posé sur <html> par le bouton de bascule.
+   Ratios de contraste WCAG calculés sur le fond --bg / --card (AA = 4,5:1). */
 :root {
-  --bg: #fbf8f4;
-  --fg: #222;
-  --muted: #666;
-  --accent: #b5543c;
-  --card: #fff;
+  color-scheme: light dark;
+
+  /* Couleurs — thème clair */
+  --bg: #fbf8f4;      /* fond de page, crème */
+  --card: #ffffff;    /* fond des cartes et étiquettes */
+  --fg: #1f1b18;      /* texte courant, noir chaud : 16,2:1 sur --bg, 17,1:1 sur --card */
+  --muted: #5c524b;   /* texte secondaire, dates : 7,2:1 sur --bg, 7,6:1 sur --card */
+  --accent: #9c3f27;  /* terracotta : liens et titres, 6,3:1 sur --bg, 6,7:1 sur --card */
+  --on-accent: #ffffff; /* texte sur fond terracotta (.btn) : 6,7:1 */
+  --line: #d9cfc5;    /* filets et bordures discrètes (décoratif) */
+  --focus: #9c3f27;   /* anneau de focus clavier, identique à l'accent */
+
+  /* Polices */
+  --font-serif: "Playfair Display", Georgia, serif;   /* titres */
+  --font-sans: Inter, system-ui, sans-serif;          /* texte courant */
+
+  /* Espacements */
+  --space-xs: 0.4rem;  /* petit écart, entre éléments liés */
+  --space-s: 0.75rem;  /* écart standard entre blocs */
+  --space-m: 1.25rem;  /* marge interne des cartes, gouttières */
+  --space-l: 2rem;     /* séparation entre groupes */
+  --space-xl: 3.5rem;  /* séparation entre sections */
+
+  /* Rayons */
+  --radius-s: 0.4rem;  /* étiquettes, boutons */
+  --radius-m: 0.75rem; /* cartes, images */
+  --radius-pill: 999px; /* éléments arrondis (étiquettes) */
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #1a1817; --fg: #eee; --muted: #aaa; --accent: #e08a6f; --card: #252220; }
+  :root:not([data-theme="light"]) {
+    --bg: #1a1715;      /* fond de page, noir chaud */
+    --card: #252120;    /* fond des cartes */
+    --fg: #f3ece4;      /* texte courant, crème : 15,2:1 sur --bg */
+    --muted: #b9aea4;   /* texte secondaire : 8,2:1 sur --bg, 7,3:1 sur --card */
+    --accent: #e8957d;  /* terracotta clair : 7,7:1 sur --bg, 6,9:1 sur --card */
+    --on-accent: #1a1715; /* texte sur fond terracotta : 7,7:1 */
+    --line: #3d3632;    /* filets */
+    --focus: #e8957d;   /* anneau de focus */
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1a1715;      /* fond de page, noir chaud */
+  --card: #252120;    /* fond des cartes */
+  --fg: #f3ece4;      /* texte courant, crème : 15,2:1 sur --bg */
+  --muted: #b9aea4;   /* texte secondaire : 8,2:1 sur --bg, 7,3:1 sur --card */
+  --accent: #e8957d;  /* terracotta clair : 7,7:1 sur --bg, 6,9:1 sur --card */
+  --on-accent: #1a1715; /* texte sur fond terracotta : 7,7:1 */
+  --line: #3d3632;    /* filets */
+  --focus: #e8957d;   /* anneau de focus */
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; font: 1.05rem/1.6 system-ui, sans-serif; background: var(--bg); color: var(--fg); }
-a { color: var(--accent); }
+body { margin: 0; font: 1.05rem/1.65 var(--font-sans); background: var(--bg); color: var(--fg); }
+h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.2; }
+a { color: var(--accent); text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
 
-header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding: 1rem 1.5rem; }
-header .brand { font-weight: 700; text-decoration: none; color: var(--fg); }
-nav { display: flex; gap: 1.25rem; }
+/* Focus clavier visible sur tous les liens et boutons */
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-s);
+}
+
+/* ---------- Composants réutilisables ---------- */
+
+/* Bouton : <a class="btn"> ou <button class="btn">.
+   Variante .btn--ghost : contour seul, sans fond plein. */
+.btn {
+  display: inline-block; font: inherit; font-weight: 600; line-height: 1.2; cursor: pointer;
+  padding: var(--space-xs) var(--space-m); border-radius: var(--radius-s);
+  background: var(--accent); color: var(--on-accent); border: 2px solid var(--accent);
+  text-decoration: none;
+}
+.btn:hover { background: transparent; color: var(--accent); }
+.btn--ghost { background: transparent; color: var(--accent); }
+.btn--ghost:hover { background: var(--accent); color: var(--on-accent); }
+
+/* Carte : <div class="card"> ou <li class="card">, bloc sur fond --card
+   avec filet discret ; au survol, le filet passe à la couleur d'accent. */
+.card {
+  background: var(--card); padding: var(--space-s) var(--space-m);
+  border: 1px solid var(--line); border-radius: var(--radius-m);
+}
+.card:hover { border-color: var(--accent); }
+.card:focus-within { border-color: var(--accent); }
+
+/* Étiquette : <span class="tag">, petit libellé arrondi (rubrique, date…). */
+.tag {
+  display: inline-block; font-size: 0.85rem; font-weight: 600; padding: 0.1rem 0.7rem;
+  border-radius: var(--radius-pill); background: var(--card); color: var(--accent);
+  border: 1px solid var(--accent); text-decoration: none;
+}
+a.tag:hover { background: var(--accent); color: var(--on-accent); }
+
+/* ---------- Mise en page ---------- */
+
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-s) var(--space-m); padding: var(--space-s) var(--space-m); border-bottom: 1px solid var(--line); }
+header .brand { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; text-decoration: none; color: var(--fg); }
+header .brand:hover { color: var(--accent); }
+.header-end { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-s) var(--space-m); }
+nav { display: flex; flex-wrap: wrap; gap: var(--space-s) var(--space-m); }
 nav a { text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+.theme-toggle { padding: 0.25rem var(--space-s); font-size: 0.9rem; }
 
-main { max-width: 60rem; margin: 0 auto; padding: 0 1rem; }
-section { padding: 3rem 0; }
+main { max-width: 60rem; margin: 0 auto; padding: 0 var(--space-m); }
+section { padding: var(--space-xl) 0; }
 .hero { text-align: center; padding: 5rem 0; }
 .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin: 0; }
 .tagline { color: var(--muted); font-size: 1.25rem; }
 
-.about { display: grid; gap: 1.5rem; }
-.about img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 0.6rem; }
+.about { display: grid; gap: var(--space-l) var(--space-m); }
+.about img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: var(--radius-m); }
 @media (min-width: 700px) {
-  .about { grid-template-columns: 16rem 1fr; align-items: start; gap: 2rem; }
+  .about { grid-template-columns: 16rem 1fr; align-items: start; gap: var(--space-l); }
 }
 
 .about h3 { margin: 1.5rem 0 0.6rem; }
 .langs { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.6rem; }
-.langs div { background: var(--card); padding: 0.6rem 0.9rem; border-radius: 0.6rem; }
+.langs div { background: var(--card); border: 1px solid var(--line); padding: 0.6rem 0.9rem; border-radius: var(--radius-m); }
 .langs dt { font-weight: 700; }
 .langs dd { margin: 0; color: var(--muted); font-size: 0.95rem; overflow-wrap: anywhere; }
 
-footer { text-align: center; color: var(--muted); padding: 2rem; }
+footer { text-align: center; color: var(--muted); padding: var(--space-l); }
 
-h3 { margin-top: 2rem; }
+h3 { margin-top: var(--space-l); }
 .meta { color: var(--muted); font-size: 0.9rem; }
 .list { padding: 0; list-style: none; }
-.list li { background: var(--card); padding: 0.9rem 1.1rem; border-radius: 0.6rem; margin-bottom: 0.6rem; }
+.list li { background: var(--card); border: 1px solid var(--line); padding: 0.9rem 1.1rem; border-radius: var(--radius-m); margin-bottom: 0.6rem; overflow-wrap: anywhere; }
+.list li:hover, .list li:focus-within { border-color: var(--accent); }
 .list .meta { display: block; }
-.list li { overflow-wrap: anywhere; }
 
-.rubrique { margin-top: 2.5rem; padding-left: 1rem; border-left: 4px solid var(--accent); }
+.rubrique { margin-top: 2.5rem; padding-left: var(--space-s); border-left: 4px solid var(--accent); }
 .rubrique h3 { margin-top: 0; color: var(--accent); font-size: 1.5rem; }
 .rubrique h4 { margin: 1.5rem 0 0.75rem; font-size: 1.1rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .card, .list li, a.tag { transition: background-color 0.15s, color 0.15s, border-color 0.15s; }
+}
