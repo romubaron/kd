@@ -20,11 +20,11 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
 </head>
-<body>
+<body id="top">
   <header>
-    <a class="brand" href="#">Klervi Dalibot</a>
+    <a class="brand" href="#top">Klervi Dalibot</a>
     <div class="header-end">
-      <nav>
+      <nav aria-label="Navigation principale">
         <a href="#about">À propos</a>
         <a href="#work">Réalisations</a>
         <a href="#contact">Contact</a>
@@ -35,15 +35,21 @@
 
   <main>
     <section class="hero">
-      <h1>Klervi Dalibot</h1>
-      <p class="tagline">Journaliste · Rédactrice · Présentatrice</p>
-      <p class="meta">Nantes · Paris</p>
+      <img class="hero-photo" src="images/klervi.jpg" alt="Portrait de Klervi Dalibot, journaliste et présentatrice" width="720" height="900">
+      <div class="hero-text">
+        <h1>Klervi Dalibot</h1>
+        <p class="tagline">Journaliste · Rédactrice · Présentatrice</p>
+        <p class="meta">Nantes · Paris</p>
+        <p class="hero-cta">
+          <a class="btn" href="#work">Voir ses réalisations</a>
+          <a class="btn btn--ghost" href="#contact">La contacter</a>
+        </p>
+      </div>
     </section>
 
     <section id="about">
       <h2>À propos</h2>
       <div class="about">
-        <img src="images/klervi.jpg" alt="Portrait de Klervi Dalibot, journaliste et présentatrice" width="720" height="900" loading="lazy">
         <div>
           <p>« Nourrie aux médias et au beurre salé », Klervi Dalibot est journaliste TV, rédactrice et reporter, entre Nantes et Paris.
           Elle présente les éditions régionales ICI 12/13 et ICI 19/20 de France 3 et écrit pour France 3 Pays de la Loire.
