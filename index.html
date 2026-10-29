@@ -69,44 +69,98 @@
     <section id="work">
       <h2>Réalisations</h2>
 
-      <div class="rubrique" id="journalisme">
-      <h3>Journalisme</h3>
+      <div class="filters" id="filters" role="group" aria-label="Filtrer les réalisations" hidden>
+        <button type="button" class="btn btn--ghost" data-filter="all" aria-pressed="true">Tout</button>
+        <button type="button" class="btn btn--ghost" data-filter="jt" aria-pressed="false">JT</button>
+        <button type="button" class="btn btn--ghost" data-filter="reportages" aria-pressed="false">Reportages</button>
+        <button type="button" class="btn btn--ghost" data-filter="interviews" aria-pressed="false">Interviews</button>
+        <button type="button" class="btn btn--ghost" data-filter="articles" aria-pressed="false">Articles</button>
+      </div>
+      <p class="meta" id="filter-status" role="status" aria-live="polite"></p>
 
-      <h4>Présentation de JT</h4>
-      <ul class="list">
-        <li>Présentation régulière des éditions ICI 12/13 et ICI 19/20 <span class="meta">France 3, depuis 2025</span></li>
-        <li>Édition spéciale inondations d'ICI 19/20 Pays de la Loire, en direct d'Angers <span class="meta">France 3, février 2026</span></li>
-        <li>Nantes Soir, le JT quotidien <span class="meta">Télénantes, 2025</span></li>
-      </ul>
-
-      <h4>Reportages et interviews</h4>
-      <ul class="list">
-        <li>Série « Saint-Jean-de-Monts en été » <span class="meta">France 3, août 2026</span></li>
-        <li>Reportage sur un groupe de parole thérapeutique, série santé mentale <span class="meta">France 3, juin 2026</span></li>
-        <li>Interviews de décideurs aux Assises de la pêche et des produits de la mer <span class="meta">Le marin, juin 2026</span></li>
-        <li>Interview de Rose Lamy, autrice d'« Ascendant beauf » <span class="meta">Télénantes, mai 2025</span></li>
-        <li>Chronique sur la soumission chimique <span class="meta">Télénantes, mai 2025</span></li>
-      </ul>
-
-      <h4>Articles récents</h4>
-      <ul class="list">
-          <li><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/loire-atlantique/nantes/on-ne-sait-pas-ou-aller-a-nantes-des-familles-georgiennes-expulsees-de-leur-logement-a-quelques-jours-de-la-treve-hivernale-3439224.html">« On ne sait pas où aller » : à Nantes, des familles géorgiennes expulsées de leur logement « à quelques jours de la trêve hivernale »</a> <span class="meta">26/10/2026</span></li>
-          <li><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/loire-atlantique/la-baule/notre-mission-c-est-de-sortir-les-gens-de-leur-isolement-en-pays-de-la-loire-le-transport-solidaire-a-le-vent-en-poupe-3437787.html">« Notre mission, c'est de sortir les gens de leur isolement » : en Pays de la Loire, le transport solidaire a le vent en poupe</a> <span class="meta">24/10/2026</span></li>
-          <li><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/maine-et-loire/angers/face-a-la-chine-et-aux-etats-unis-on-est-les-seuls-a-pouvoir-produire-ces-supercalculateurs-a-angers-l-usine-bull-s-agrandit-et-devient-l-etendard-francais-dans-la-course-a-l-ia-3427053.html">« Face à la Chine et aux États-Unis, on est les seuls à pouvoir produire ces supercalculateurs » : à Angers, l'usine Bull s'agrandit</a> <span class="meta">02/10/2026</span></li>
-          <li><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/loire-atlantique/nantes/malgre-un-nombre-de-medecins-en-hausse-la-demographie-medicale-reste-a-la-traine-en-pays-de-la-loire-3425180.html">Malgré un nombre de médecins en hausse, la démographie médicale reste à la traîne en Pays de la Loire</a> <span class="meta">30/09/2026</span></li>
-          <li><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/loire-atlantique/nantes/c-est-faire-le-deuil-de-ce-que-l-on-a-connu-quand-on-etait-enfant-l-eco-anxiete-touche-de-plus-en-plus-de-personnes-3421652.html">« C'est un processus de deuil de ce qu'on a connu enfant » : l'éco-anxiété touche de plus en plus de personnes</a> <span class="meta">23/09/2026</span></li>
-          <li><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/vendee/ile-d-yeu/vivre-sur-une-ile-l-enfer-ou-le-paradis-3420239.html">Vidéo. Vivre sur une île, l'enfer ou le paradis ?</a> <span class="meta">20/09/2026</span></li>
+      <ul class="cards" id="cards">
+        <li class="card work-card" data-cat="jt">
+          <span class="tag">JT</span>
+          <p class="work-title">Présentation régulière des éditions ICI 12/13 et ICI 19/20</p>
+          <p class="meta">France 3, depuis 2025</p>
+        </li>
+        <li class="card work-card" data-cat="jt">
+          <span class="tag">JT</span>
+          <p class="work-title">Édition spéciale inondations d'ICI 19/20 Pays de la Loire, en direct d'Angers</p>
+          <p class="meta">France 3, février 2026</p>
+        </li>
+        <li class="card work-card" data-cat="jt">
+          <span class="tag">JT</span>
+          <p class="work-title">Nantes Soir, le JT quotidien</p>
+          <p class="meta">Télénantes, 2025</p>
+        </li>
+        <li class="card work-card" data-cat="reportages">
+          <span class="tag">Reportage</span>
+          <p class="work-title">Série « Saint-Jean-de-Monts en été »</p>
+          <p class="meta">France 3, août 2026</p>
+        </li>
+        <li class="card work-card" data-cat="reportages">
+          <span class="tag">Reportage</span>
+          <p class="work-title">Reportage sur un groupe de parole thérapeutique, série santé mentale</p>
+          <p class="meta">France 3, juin 2026</p>
+        </li>
+        <li class="card work-card" data-cat="interviews">
+          <span class="tag">Interview</span>
+          <p class="work-title">Interviews de décideurs aux Assises de la pêche et des produits de la mer</p>
+          <p class="meta">Le marin, juin 2026</p>
+        </li>
+        <li class="card work-card" data-cat="interviews">
+          <span class="tag">Interview</span>
+          <p class="work-title">Interview de Rose Lamy, autrice d'« Ascendant beauf »</p>
+          <p class="meta">Télénantes, mai 2025</p>
+        </li>
+        <li class="card work-card" data-cat="reportages">
+          <span class="tag">Reportage</span>
+          <p class="work-title">Chronique sur la soumission chimique</p>
+          <p class="meta">Télénantes, mai 2025</p>
+        </li>
+        <li class="card work-card" data-cat="articles">
+          <span class="tag">Article</span>
+          <p class="work-title"><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/loire-atlantique/nantes/on-ne-sait-pas-ou-aller-a-nantes-des-familles-georgiennes-expulsees-de-leur-logement-a-quelques-jours-de-la-treve-hivernale-3439224.html">« On ne sait pas où aller » : à Nantes, des familles géorgiennes expulsées de leur logement « à quelques jours de la trêve hivernale »</a></p>
+          <p class="meta">26/10/2026</p>
+        </li>
+        <li class="card work-card" data-cat="articles">
+          <span class="tag">Article</span>
+          <p class="work-title"><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/loire-atlantique/la-baule/notre-mission-c-est-de-sortir-les-gens-de-leur-isolement-en-pays-de-la-loire-le-transport-solidaire-a-le-vent-en-poupe-3437787.html">« Notre mission, c'est de sortir les gens de leur isolement » : en Pays de la Loire, le transport solidaire a le vent en poupe</a></p>
+          <p class="meta">24/10/2026</p>
+        </li>
+        <li class="card work-card" data-cat="articles">
+          <span class="tag">Article</span>
+          <p class="work-title"><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/maine-et-loire/angers/face-a-la-chine-et-aux-etats-unis-on-est-les-seuls-a-pouvoir-produire-ces-supercalculateurs-a-angers-l-usine-bull-s-agrandit-et-devient-l-etendard-francais-dans-la-course-a-l-ia-3427053.html">« Face à la Chine et aux États-Unis, on est les seuls à pouvoir produire ces supercalculateurs » : à Angers, l'usine Bull s'agrandit</a></p>
+          <p class="meta">02/10/2026</p>
+        </li>
+        <li class="card work-card" data-cat="articles">
+          <span class="tag">Article</span>
+          <p class="work-title"><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/loire-atlantique/nantes/malgre-un-nombre-de-medecins-en-hausse-la-demographie-medicale-reste-a-la-traine-en-pays-de-la-loire-3425180.html">Malgré un nombre de médecins en hausse, la démographie médicale reste à la traîne en Pays de la Loire</a></p>
+          <p class="meta">30/09/2026</p>
+        </li>
+        <li class="card work-card" data-cat="articles">
+          <span class="tag">Article</span>
+          <p class="work-title"><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/loire-atlantique/nantes/c-est-faire-le-deuil-de-ce-que-l-on-a-connu-quand-on-etait-enfant-l-eco-anxiete-touche-de-plus-en-plus-de-personnes-3421652.html">« C'est un processus de deuil de ce qu'on a connu enfant » : l'éco-anxiété touche de plus en plus de personnes</a></p>
+          <p class="meta">23/09/2026</p>
+        </li>
+        <li class="card work-card" data-cat="articles">
+          <span class="tag">Article</span>
+          <p class="work-title"><a href="https://france3-regions.franceinfo.fr/pays-de-la-loire/vendee/ile-d-yeu/vivre-sur-une-ile-l-enfer-ou-le-paradis-3420239.html">Vidéo. Vivre sur une île, l'enfer ou le paradis ?</a></p>
+          <p class="meta">20/09/2026</p>
+        </li>
+        <li class="card work-card" data-cat="animation">
+          <span class="tag">Animation</span>
+          <p class="work-title">Victoires des médias de la presse spécialisée</p>
+          <p class="meta">SPP, avril 2026</p>
+        </li>
+        <li class="card work-card" data-cat="animation">
+          <span class="tag">Animation</span>
+          <p class="work-title">Grand Prix Écoles Com&amp;Médias, talent show en direct d'étudiants en design et communication</p>
+          <p class="meta">avril 2025</p>
+        </li>
       </ul>
       <p><a href="https://france3-regions.franceinfo.fr/redaction/klervi-dalibot">Tous ses articles sur France 3 Régions</a></p>
-      </div>
-
-      <div class="rubrique" id="animation">
-      <h3>Animation</h3>
-      <ul class="list">
-        <li>Victoires des médias de la presse spécialisée <span class="meta">SPP, avril 2026</span></li>
-        <li>Grand Prix Écoles Com&amp;Médias, talent show en direct d'étudiants en design et communication <span class="meta">avril 2025</span></li>
-      </ul>
-      </div>
     </section>
 
     <section id="contact">
@@ -136,6 +190,25 @@
         root.setAttribute("data-theme", t);
         try { localStorage.setItem("theme", t); } catch (e) {}
         label();
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var bar = document.getElementById("filters"), status = document.getElementById("filter-status");
+      var btns = bar.querySelectorAll("button"), cards = document.querySelectorAll("#cards > li");
+      bar.hidden = false;
+      btns.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var f = b.getAttribute("data-filter"), n = 0;
+          btns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+          cards.forEach(function (c) {
+            var show = f === "all" || c.getAttribute("data-cat") === f;
+            c.hidden = !show;
+            if (show) n++;
+          });
+          status.textContent = n + (n > 1 ? " réalisations affichées" : " réalisation affichée");
+        });
       });
     })();
   </script>
