@@ -142,6 +142,18 @@ h3 { margin-top: var(--space-l); }
 .rubrique h3 { margin-top: 0; color: var(--accent); font-size: 1.5rem; }
 .rubrique h4 { margin: 1.5rem 0 0.75rem; font-size: 1.1rem; }
 
+/* Réalisations : filtres (affichés par le JS) et cartes */
+.filters { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin: var(--space-m) 0 var(--space-xs); }
+.filters[hidden], .cards [hidden] { display: none; }
+.filters .btn { padding: 0.25rem var(--space-s); }
+.filters .btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.filters .btn[aria-pressed="true"]:hover { background: var(--accent); color: var(--on-accent); }
+.cards { list-style: none; padding: 0; margin: var(--space-s) 0 var(--space-m); display: grid; grid-template-columns: 1fr; gap: var(--space-s); }
+@media (min-width: 700px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+.work-card { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs); min-width: 0; overflow-wrap: anywhere; }
+.work-card .work-title { margin: 0; font-weight: 600; }
+.work-card .meta { margin: auto 0 0; }
+
 @media (prefers-reduced-motion: no-preference) {
   .btn, .card, .list li, a.tag { transition: background-color 0.15s, color 0.15s, border-color 0.15s; }
 }
