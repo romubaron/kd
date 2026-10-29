@@ -186,13 +186,37 @@
 
     <section id="contact">
       <h2>Contact</h2>
-      <p><a href="mailto:klervi.dalibot@gmail.com">klervi.dalibot@gmail.com</a></p>
-      <p><a href="https://ginkio.com/klervi-dalibot">Profil Ginkio</a></p>
-      <p><a href="https://www.linkedin.com/in/klervi-dalibot/">Profil LinkedIn</a></p>
+      <p>Une question, une proposition, un projet ? Écrivez-lui :</p>
+      <ul class="contact-links">
+        <li><a class="btn" href="mailto:klervi.dalibot@gmail.com">klervi.dalibot@gmail.com</a></li>
+        <li><a class="btn btn--ghost" href="https://www.linkedin.com/in/klervi-dalibot/" target="_blank" rel="noopener">Profil LinkedIn</a></li>
+        <li><a class="btn btn--ghost" href="https://ginkio.com/klervi-dalibot" target="_blank" rel="noopener">Profil Ginkio</a></li>
+      </ul>
+      <form class="contact-form card" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="654a4ff9-ec56-434e-ba5a-cca68279a450">
+        <input type="hidden" name="subject" value="Nouveau message depuis le site de Klervi Dalibot">
+        <input type="hidden" name="from_name" value="Site de Klervi Dalibot">
+        <input type="hidden" name="redirect" value="https://romubaron.github.io/kd/merci.html">
+        <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="field">
+          <label for="cf-name">Nom</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required>
+        </p>
+        <p class="field">
+          <label for="cf-email">E-mail</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required>
+        </p>
+        <p class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="6" required></textarea>
+        </p>
+        <p><button type="submit" class="btn">Envoyer</button></p>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
     </section>
   </main>
 
-  <footer>© Klervi Dalibot</footer>
+  <footer>© Klervi Dalibot · <a href="#contact">Contact</a></footer>
 
   <script>
     (function () {
@@ -230,6 +254,34 @@
           });
           status.textContent = n + (n > 1 ? " réalisations affichées" : " réalisation affichée");
         });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var form = document.getElementById("contact-form"), status = document.getElementById("form-status");
+      var fail = "Le message n'a pas pu être envoyé. Merci d'écrire directement à klervi.dalibot@gmail.com.";
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var btn = form.querySelector("button[type=submit]");
+        btn.disabled = true;
+        status.className = "form-status";
+        status.textContent = "Envoi en cours…";
+        var data = {};
+        new FormData(form).forEach(function (v, k) { data[k] = v; });
+        fetch(form.action, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+          .then(function (r) { return r.json(); })
+          .then(function (j) {
+            if (!j.success) throw new Error();
+            form.reset();
+            status.className = "form-status form-status--ok";
+            status.textContent = "Merci, votre message a bien été envoyé. Klervi vous répondra dès que possible.";
+          })
+          .catch(function () {
+            status.className = "form-status form-status--error";
+            status.textContent = fail;
+          })
+          .then(function () { btn.disabled = false; });
       });
     })();
   </script>
