@@ -172,6 +172,9 @@ h3 { margin-top: var(--space-l); }
 @media (prefers-reduced-motion: no-preference) {
   .btn, .card, .list li, a.tag { transition: background-color 0.15s, color 0.15s, border-color 0.15s; }
 }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
 
 /* Contact : liens directs et formulaire (une colonne, champs pleine largeur) */
 .contact-links { list-style: none; padding: 0; margin: var(--space-m) 0; display: flex; flex-wrap: wrap; gap: var(--space-s); }
