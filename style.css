@@ -124,6 +124,11 @@ section[id], .rubrique[id] { scroll-margin-top: 9rem; }
 
 
 .about h3 { margin: 1.5rem 0 0.6rem; }
+.tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 var(--space-m); border-left: 2px solid var(--line); }
+.timeline li { position: relative; margin-bottom: var(--space-m); overflow-wrap: anywhere; }
+.timeline li::before { content: ""; position: absolute; left: calc(-1 * var(--space-m) - 6px); top: 0.6rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.timeline .meta { display: block; margin: 0; font-weight: 600; }
 .langs { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.6rem; }
 .langs div { background: var(--card); border: 1px solid var(--line); padding: 0.6rem 0.9rem; border-radius: var(--radius-m); }
 .langs dt { font-weight: 700; }
