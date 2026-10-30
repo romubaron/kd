@@ -165,6 +165,7 @@ h3 { margin-top: var(--space-l); }
 .editorial-item { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs); min-width: 0; overflow-wrap: anywhere; padding: var(--space-m); }
 .editorial-item h3 { margin: 0; font-size: 1.3rem; color: var(--accent); }
 .editorial-item p { margin: 0; }
+.editorial-item .video-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-xs); }
 .editorial-item figure { margin: 0 0 var(--space-xs); width: 100%; }
 .editorial-item figure img { display: block; width: 100%; height: auto; border-radius: var(--radius-m); }
 .editorial-item figcaption { color: var(--muted); font-size: 0.85rem; }
