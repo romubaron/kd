@@ -30,7 +30,10 @@
         <a href="#animation">Animation</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button type="button" class="btn btn--ghost theme-toggle" id="theme-toggle" hidden></button>
+      <button type="button" class="btn btn--ghost theme-toggle" id="theme-toggle" hidden>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
   </header>
 
@@ -259,12 +262,15 @@
   <script>
     (function () {
       var root = document.documentElement, btn = document.getElementById("theme-toggle");
+      var sun = btn.querySelector(".icon-sun"), moon = btn.querySelector(".icon-moon");
       var mq = window.matchMedia("(prefers-color-scheme: dark)");
       function current() { return root.getAttribute("data-theme") || (mq.matches ? "dark" : "light"); }
       function label() {
-        var next = current() === "dark" ? "clair" : "sombre";
-        btn.textContent = "Thème " + next;
-        btn.setAttribute("aria-label", "Passer au thème " + next);
+        var dark = current() === "dark", text = "Passer au thème " + (dark ? "clair" : "sombre");
+        sun.style.display = dark ? "" : "none";
+        moon.style.display = dark ? "none" : "";
+        btn.setAttribute("aria-label", text);
+        btn.title = text;
       }
       btn.hidden = false;
       label();
