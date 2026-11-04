@@ -106,7 +106,9 @@ header .brand:hover { color: var(--accent); }
 nav { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-m); }
 nav a { text-decoration: none; }
 nav a:hover { text-decoration: underline; }
-.theme-toggle { padding: 0.25rem var(--space-s); font-size: 0.9rem; }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0; }
+.theme-toggle[hidden] { display: none; }
+.theme-toggle svg { display: block; width: 24px; height: 24px; }
 
 main { max-width: 60rem; margin: 0 auto; padding: 0 var(--space-m); }
 section { padding: var(--space-xl) 0; }
