@@ -4,6 +4,10 @@ on:
   pull_request:
   push:
     branches: [main]
+  # Chaque jour à 6h17 (heure de Paris en hiver) : republie le site avec les derniers articles France 3.
+  # GitHub suspend les tâches planifiées d'un dépôt public sans activité depuis 60 jours.
+  schedule:
+    - cron: '17 5 * * *'
 
 permissions:
   contents: read
@@ -18,7 +22,7 @@ jobs:
       - run: python3 check.py
 
   deploy:
-    if: github.event_name == 'push'
+    if: github.event_name != 'pull_request'
     needs: check
     # Une seule mise en ligne à la fois : deux fusions rapprochées se suivent au lieu d'échouer.
     # Seule la dernière en attente est gardée, donc main finit toujours déployé.
@@ -32,6 +36,10 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      # Derniers articles dans la copie publiée, sans commit. Si France 3 ne répond pas, un push
+      # publie quand même (liste du dépôt) ; seule la mise à jour quotidienne passe en échec.
+      - run: python3 articles.py
+        continue-on-error: ${{ github.event_name != 'schedule' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

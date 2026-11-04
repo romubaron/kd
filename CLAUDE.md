@@ -9,6 +9,7 @@ Développé par Gravity (voir `gravity.yaml`) : une issue = une tâche, avec les
 - Couleurs via les variables de `:root` dans `style.css` (le mode sombre les redéfinit).
 - Mobile d'abord : rien ne doit déborder horizontalement à 360px de large.
 - Images dans `images/`, compressées, avec un `alt` descriptif.
+- Les cartes « Article » entre `<!-- articles:début … -->` et `<!-- articles:fin -->` sont regénérées par `articles.py` à chaque mise en ligne et chaque jour : ne pas les éditer à la main, garder les deux marqueurs, et changer le gabarit d'une carte article dans `articles.py` (fonction `render`).
 - Ne pas inventer de faits sur Klervi : chaque info doit venir d'une source (France 3, Ginkio) ou de l'issue.
 
 ## Vérifier

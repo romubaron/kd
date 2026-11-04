@@ -114,8 +114,19 @@ def demo():
         assert check(d) == [], check(d)
 
 
+def check_articles(root):
+    """articles.py doit pouvoir remplacer les cartes Article de index.html (mise à jour quotidienne)."""
+    import articles
+    articles.demo()
+    try:
+        articles.update((root / "index.html").read_text(encoding="utf-8"), [])
+    except SystemExit as e:
+        return [f"index.html: {e}"]
+    return []
+
+
 if __name__ == "__main__":
     demo()
-    errors = check(ROOT)
+    errors = check(ROOT) + check_articles(ROOT)
     print("\n".join(errors) or "OK")
     sys.exit(1 if errors else 0)
