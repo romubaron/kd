@@ -9,3 +9,11 @@ workflow:
 
 concurrency:
   implementation: 3
+
+# What a delivery is for kd (ADR-0041): the site is published by GitHub Pages
+# from main; there is no database migration and no smoke check.
+delivery:
+  deployment:
+    environment: github-pages
+  migration: none
+  smoke: none
