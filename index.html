@@ -259,10 +259,11 @@
     </section>
   </main>
 
-  <footer>© Klervi Dalibot · <a href="#contact">Contact</a></footer>
+  <footer>© <span id="year">2026</span> Klervi Dalibot · <a href="#contact">Contact</a></footer>
 
   <script>
     (function () {
+      document.getElementById("year").textContent = new Date().getFullYear();
       var root = document.documentElement, btn = document.getElementById("theme-toggle");
       var sun = btn.querySelector(".icon-sun"), moon = btn.querySelector(".icon-moon");
       var mq = window.matchMedia("(prefers-color-scheme: dark)");
