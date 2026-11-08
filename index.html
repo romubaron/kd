@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Klervi Dalibot</title>
   <meta name="description" content="Klervi Dalibot, journaliste, rédactrice et présentatrice : portfolio et contact.">
+  <meta name="theme-color" content="#fbf8f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1715" media="(prefers-color-scheme: dark)">
   <script>
     try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
   </script>
@@ -259,10 +261,11 @@
     </section>
   </main>
 
-  <footer>© Klervi Dalibot · <a href="#contact">Contact</a></footer>
+  <footer>© <span id="year">2026</span> Klervi Dalibot · <a href="#contact">Contact</a></footer>
 
   <script>
     (function () {
+      document.getElementById("year").textContent = new Date().getFullYear();
       var root = document.documentElement, btn = document.getElementById("theme-toggle");
       var sun = btn.querySelector(".icon-sun"), moon = btn.querySelector(".icon-moon");
       var mq = window.matchMedia("(prefers-color-scheme: dark)");
