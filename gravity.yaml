@@ -6,6 +6,9 @@ repo:
 workflow:
   verify:
     quick: python3 check.py
+  review:
+    agent: antigravity
+    maxRounds: 2
 
 concurrency:
   implementation: 3
