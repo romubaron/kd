@@ -6,8 +6,10 @@ repo:
 workflow:
   verify:
     quick: python3 check.py
+  implementation:
+    agent: claude-code
   review:
-    agent: antigravity
+    agent: codex
     maxRounds: 2
 
 concurrency:
