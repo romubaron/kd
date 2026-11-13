@@ -160,6 +160,8 @@ h3 { margin-top: var(--space-l); }
 .work-card { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs); min-width: 0; overflow-wrap: anywhere; }
 .work-card .work-title { margin: 0; font-weight: 600; }
 .work-card .meta { margin: auto 0 0; }
+.work-card .video-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-xs); }
+.work-card .video-hint { font-weight: 400; }
 
 /* Animation : deux références éditoriales ; <figure> facultative (visuel sourcé, légende obligatoire) */
 .editorial { list-style: none; padding: 0; margin: var(--space-m) 0 0; display: grid; grid-template-columns: 1fr; gap: var(--space-m); }
