@@ -59,6 +59,19 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.2; }
 a { color: var(--accent); text-underline-offset: 0.2em; }
 a:hover { text-decoration-thickness: 2px; }
 
+html { scroll-padding-top: 9rem; }
+@media (min-width: 700px) { html { scroll-padding-top: 5rem; } }
+main:focus { outline: none; }
+
+/* Lien d'évitement : premier élément atteint au clavier, visible au focus */
+.skip-link {
+  position: absolute; left: var(--space-xs); top: 0; z-index: 20;
+  transform: translateY(-200%); padding: var(--space-xs) var(--space-s);
+  background: var(--bg); color: var(--accent); font-weight: 600;
+  border-radius: var(--radius-s);
+}
+.skip-link:focus-visible { transform: none; }
+
 /* Focus clavier visible sur tous les liens et boutons */
 a:focus-visible, button:focus-visible, .btn:focus-visible {
   outline: 3px solid var(--focus);
@@ -197,3 +210,15 @@ h3 { margin-top: var(--space-l); }
 .form-status { font-weight: 600; }
 .form-status--error { color: var(--accent); }
 .botcheck { display: none; }
+
+/* Cibles tactiles d'au moins 44 x 44 px sur mobile */
+@media (max-width: 699px) {
+  header .brand, nav a, .btn, footer a {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; min-width: 44px;
+  }
+  nav { gap: 0 var(--space-xs); }
+  nav a { padding: 0 var(--space-s); }
+  .filters .btn { padding-block: 0; }
+  .btn { max-width: 100%; text-align: center; }
+}
