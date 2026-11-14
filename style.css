@@ -1,18 +1,17 @@
-/* Variables : thème clair par défaut, thème sombre via prefers-color-scheme
-   ou via l'attribut data-theme posé sur <html> par le bouton de bascule.
-   Ratios de contraste WCAG calculés sur le fond --couleur-fond / --couleur-carte (AA = 4,5:1). */
+/* Variables : palette unique, thème clair ou sombre selon l'appareil. */
 :root {
   color-scheme: light dark;
 
-  /* Couleurs — thème clair */
-  --couleur-fond: #fbf8f4;      /* fond de page, crème */
-  --couleur-carte: #ffffff;    /* fond des cartes et étiquettes */
-  --couleur-texte: #1f1b18;      /* texte courant, noir chaud : 16,2:1 sur --couleur-fond, 17,1:1 sur --couleur-carte */
-  --couleur-discret: #5c524b;   /* texte secondaire, dates : 7,2:1 sur --couleur-fond, 7,6:1 sur --couleur-carte */
-  --couleur-accent: #9c3f27;  /* terracotta : liens et titres, 6,3:1 sur --couleur-fond, 6,7:1 sur --couleur-carte */
-  --couleur-sur-accent: #ffffff; /* texte sur fond terracotta (.btn) : 6,7:1 */
-  --couleur-filet: #d9cfc5;    /* filets et bordures discrètes (décoratif) */
-  --couleur-focus: #9c3f27;   /* anneau de focus clavier, identique à l'accent */
+  /* Couleurs : light-dark(clair, sombre). Chaque valeur n'est écrite qu'une fois ;
+     le thème suit l'appareil via color-scheme, sans script. */
+  --couleur-fond: light-dark(#fbf8f4, #1a1715);       /* fond de page : crème / noir chaud */
+  --couleur-carte: light-dark(#ffffff, #252120);      /* fond des cartes et étiquettes */
+  --couleur-texte: light-dark(#1f1b18, #f3ece4);      /* texte courant */
+  --couleur-discret: light-dark(#5c524b, #b9aea4);    /* texte secondaire, dates */
+  --couleur-accent: light-dark(#9c3f27, #e8957d);     /* terracotta : liens et titres */
+  --couleur-sur-accent: light-dark(#ffffff, #1a1715); /* texte sur fond terracotta (.btn) */
+  --couleur-filet: light-dark(#d9cfc5, #3d3632);      /* filets et bordures (décoratif) */
+  --couleur-focus: light-dark(#9c3f27, #e8957d);      /* anneau de focus clavier */
 
   /* Polices */
   --font-serif: "Playfair Display", Georgia, serif;   /* titres */
@@ -30,28 +29,9 @@
   --radius-m: 0.75rem; /* cartes, images */
   --radius-pill: 999px; /* éléments arrondis (étiquettes) */
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --couleur-fond: #1a1715;      /* fond de page, noir chaud */
-    --couleur-carte: #252120;    /* fond des cartes */
-    --couleur-texte: #f3ece4;      /* texte courant, crème : 15,2:1 sur --couleur-fond */
-    --couleur-discret: #b9aea4;   /* texte secondaire : 8,2:1 sur --couleur-fond, 7,3:1 sur --couleur-carte */
-    --couleur-accent: #e8957d;  /* terracotta clair : 7,7:1 sur --couleur-fond, 6,9:1 sur --couleur-carte */
-    --couleur-sur-accent: #1a1715; /* texte sur fond terracotta : 7,7:1 */
-    --couleur-filet: #3d3632;    /* filets */
-    --couleur-focus: #e8957d;   /* anneau de focus */
-  }
-}
-:root[data-theme="dark"] {
-  --couleur-fond: #1a1715;      /* fond de page, noir chaud */
-  --couleur-carte: #252120;    /* fond des cartes */
-  --couleur-texte: #f3ece4;      /* texte courant, crème : 15,2:1 sur --couleur-fond */
-  --couleur-discret: #b9aea4;   /* texte secondaire : 8,2:1 sur --couleur-fond, 7,3:1 sur --couleur-carte */
-  --couleur-accent: #e8957d;  /* terracotta clair : 7,7:1 sur --couleur-fond, 6,9:1 sur --couleur-carte */
-  --couleur-sur-accent: #1a1715; /* texte sur fond terracotta : 7,7:1 */
-  --couleur-filet: #3d3632;    /* filets */
-  --couleur-focus: #e8957d;   /* anneau de focus */
-}
+/* Le bouton de bascule pose data-theme sur <html> pour forcer un thème. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 
 * { box-sizing: border-box; }
 body { margin: 0; font: 1.05rem/1.65 var(--font-sans); background: var(--couleur-fond); color: var(--couleur-texte); }
